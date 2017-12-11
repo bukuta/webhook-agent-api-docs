@@ -1,0 +1,15 @@
+403:
+  '@isTemplate': true
+  403:
+    description: Forbidden
+    content:
+      application/json:
+        schema:
+          type: Object 
+          properties:
+            code: 
+              type: integer
+            message: 
+              type: string
+
+

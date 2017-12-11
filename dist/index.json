@@ -1,0 +1,1219 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Webhook-agent Api Descriptions",
+    "description": "Webhook-agent项目接口描述 <br /><a href='https://github.com/bukuta/webhook-agent' target=\"_blank\">mock-server</a>"
+  },
+  "servers": [
+    {
+      "description": "SwaggerHub API Auto Mocking",
+      "url": "http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9"
+    }
+  ],
+  "externalDocs": {
+    "description": "安全网络指挥官wiki",
+    "url": "https://github.com/bukuta/webhook-agent"
+  },
+  "paths": {
+    "/projects/{projectId}/actions": {
+      "get": {
+        "tags": [
+          "Actions"
+        ],
+        "description": "fetch project actions",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "x-mock": "@integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Action"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Actions"
+        ],
+        "description": "create project actions",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Action"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "动作",
+                "properties": {
+                  "type": {
+                    "$ref": "#/components/schemas/ActionType"
+                  },
+                  "project": {
+                    "type": "integer",
+                    "x-mock": "@integer",
+                    "x-$ref": "#/components/schemas/Project"
+                  },
+                  "hook": {
+                    "type": "integer",
+                    "x-mock": "@integer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admins": {
+      "get": {
+        "tags": [
+          "Admins"
+        ],
+        "description": "fetch admins",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "x-mock": "@integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Admin"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Admins"
+        ],
+        "description": "create admin",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Admin"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "管理员",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "x-mock": "@word"
+                  },
+                  "cname": {
+                    "type": "string",
+                    "x-mock": "@cname"
+                  },
+                  "password": {
+                    "type": "string",
+                    "x-mock": ""
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "用户目前的状态(0允许/1禁止/2锁定)",
+                    "enum": [
+                      0,
+                      1,
+                      2
+                    ],
+                    "x-mock": "0"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/admins/{adminId}": {
+      "get": {
+        "tags": [
+          "Admins"
+        ],
+        "description": "fetch admin",
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "ID of admin",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Admin"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Admins"
+        ],
+        "description": "update admin",
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "ID of Admin",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Admin"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "description": "管理员",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "x-mock": "@word"
+                  },
+                  "cname": {
+                    "type": "string",
+                    "x-mock": "@cname"
+                  },
+                  "password": {
+                    "type": "string",
+                    "x-mock": ""
+                  },
+                  "status": {
+                    "type": "integer",
+                    "description": "用户目前的状态(0允许/1禁止/2锁定)",
+                    "enum": [
+                      0,
+                      1,
+                      2
+                    ],
+                    "x-mock": "0"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Admins"
+        ],
+        "description": "delete admin",
+        "parameters": [
+          {
+            "name": "adminId",
+            "in": "path",
+            "description": "ID of admin",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/projects/hooks": {
+      "get": {
+        "tags": [
+          "Hooks"
+        ],
+        "description": "fetch project hooks",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "x-mock": "@integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Hook"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "fetch projects",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "x-mock": "@integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Project"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "create projects",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "x-mock": "@ctitle"
+                  },
+                  "repository": {
+                    "type": "string",
+                    "x-mock": "@url"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{projectId}": {
+      "get": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "fetch project",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "update project",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Project"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "x-mock": "@ctitle"
+                  },
+                  "repository": {
+                    "type": "string",
+                    "x-mock": "@url"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Projects"
+        ],
+        "description": "delete project",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "description": "ID of Project",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/plans/{planId}": {
+      "get": {
+        "tags": [
+          "Plans"
+        ],
+        "summary": "fetch Plan By ID",
+        "description": "fetch Plan By ID",
+        "operationId": "fetchPlanById",
+        "parameters": [
+          {
+            "name": "PlanId",
+            "in": "path",
+            "description": "ID of Plan to return",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Plan"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/plans/{planId}/tasks": {
+      "get": {
+        "tags": [
+          "Plans"
+        ],
+        "summary": "fetch tasks of plan",
+        "description": "fetch tasks of plan",
+        "operationId": "fetchTasks",
+        "parameters": [
+          {
+            "name": "planId",
+            "in": "path",
+            "description": "ID of Plan",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "x-mock": "@integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Task"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/tasks/{taskId}/logs": {
+      "get": {
+        "tags": [
+          "Plans"
+        ],
+        "summary": "fetch logs of task",
+        "description": "fetch logs of task",
+        "operationId": "fetchTaskLogs",
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "path",
+            "description": "ID of Task",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer",
+                      "x-mock": "@integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Log"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/session": {
+      "post": {
+        "tags": [
+          "Session"
+        ],
+        "operationId": "createSession",
+        "summary": "create session of a user",
+        "description": "用户登录",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "account": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Admin"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "405": {
+            "description": "Invalid Input"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Session"
+        ],
+        "operationId": "destroySession",
+        "summary": "destroy session of a user",
+        "description": "用户登出",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "tags": [
+          "Session"
+        ],
+        "summary": "fetch User",
+        "description": "fetch User",
+        "operationId": "fetchUser",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "$ref": "#/components/schemas/Admin"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "UnAuthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Action": {
+        "type": "object",
+        "description": "动作",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "x-mock": "@integer"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ActionType"
+          },
+          "project": {
+            "type": "integer",
+            "x-mock": "@integer",
+            "x-$ref": "#/components/schemas/Project"
+          },
+          "hook": {
+            "type": "integer",
+            "x-mock": "@integer"
+          },
+          "creator": {
+            "type": "integer",
+            "description": "创建人",
+            "x-$ref": "#/components/schemas/Admin",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "创建时间",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "更新时间",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "Admin": {
+        "type": "object",
+        "description": "管理员",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "x-mock": "@integer"
+          },
+          "name": {
+            "type": "string",
+            "x-mock": "@word"
+          },
+          "cname": {
+            "type": "string",
+            "x-mock": "@cname"
+          },
+          "password": {
+            "type": "string",
+            "x-mock": ""
+          },
+          "status": {
+            "type": "integer",
+            "description": "用户目前的状态(0允许/1禁止/2锁定)",
+            "enum": [
+              0,
+              1,
+              2
+            ],
+            "x-mock": "0"
+          },
+          "creator": {
+            "type": "integer",
+            "x-$ref": "#/components/schemas/DeviceType",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "Branch": {
+        "type": "object",
+        "description": "分支",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "x-mock": "@integer"
+          },
+          "project": {
+            "type": "integer",
+            "x-mock": "@integer",
+            "x-$ref": "#/components/schemas/Project"
+          },
+          "protected": {
+            "type": "boolean",
+            "x-mock": "@boolean"
+          },
+          "creator": {
+            "type": "integer",
+            "description": "创建人",
+            "x-$ref": "#/components/schemas/Admin",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "创建时间",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "更新时间",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "Hook": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "x-mock": "@integer"
+          },
+          "name": {
+            "type": "string",
+            "x-mock": "@string"
+          },
+          "type": {
+            "type": "string",
+            "x-mock": "@string"
+          },
+          "creator": {
+            "type": "integer",
+            "x-$ref": "#/components/schemas/DeviceType",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "Log": {
+        "type": "object",
+        "description": "日志",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "x-mock": "@integer"
+          },
+          "content": {
+            "type": "string",
+            "x-mock": "@cparagraph"
+          },
+          "task": {
+            "type": "integer",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "Plan": {
+        "type": "object",
+        "description": "计划",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "x-mock": "@integer"
+          },
+          "operator": {
+            "type": "integer",
+            "description": "操作人",
+            "x-$ref": "#/components/schemas/Admin",
+            "x-mock": "@integer"
+          },
+          "name": {
+            "type": "string",
+            "description": "任务名称",
+            "x-mock": "@ctitle"
+          },
+          "description": {
+            "type": "string",
+            "description": "任务描述",
+            "x-mock": "@cparagraph"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "scheduledAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "定时时间",
+            "x-mock": "@datetime"
+          },
+          "executeAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "执行时间",
+            "x-mock": "@datetime"
+          },
+          "completeAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "完成时间",
+            "x-mock": "@datetime"
+          },
+          "creator": {
+            "type": "integer",
+            "description": "创建人",
+            "x-$ref": "#/components/schemas/Admin",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "创建时间",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "Project": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "x-mock": "@integer"
+          },
+          "name": {
+            "type": "string",
+            "x-mock": "@ctitle"
+          },
+          "repository": {
+            "type": "string",
+            "x-mock": "@url"
+          },
+          "creator": {
+            "type": "integer",
+            "description": "创建人",
+            "x-$ref": "#/components/schemas/Admin",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "创建时间",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "更新时间",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "Site": {
+        "type": "object",
+        "description": "站点",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "站点id",
+            "x-mock": "@integer"
+          },
+          "name": {
+            "type": "string",
+            "description": "站点名称",
+            "x-mock": "@ctitle"
+          },
+          "description": {
+            "type": "string",
+            "description": "站点描述",
+            "x-mock": "@cparagraph"
+          },
+          "maxConcurrency": {
+            "type": "integer",
+            "format": "int32",
+            "description": "最大并发数",
+            "x-mock": "@integer(1,10000)"
+          },
+          "admins": {
+            "type": "array",
+            "description": "管理员列表",
+            "items": {
+              "type": "integer",
+              "x-mock": "@integer",
+              "x-$ref": "#/components/schemas/Admin"
+            }
+          },
+          "creator": {
+            "type": "integer",
+            "description": "创建人",
+            "x-$ref": "#/components/schemas/Admin",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "创建时间",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "更新时间",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "Task": {
+        "type": "object",
+        "description": "任务",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32",
+            "description": "任务id",
+            "x-mock": "@integer"
+          },
+          "plan": {
+            "type": "integer",
+            "x-$ref": "#/components/schemas/Plan",
+            "x-mock": "@integer"
+          },
+          "operator": {
+            "type": "integer",
+            "description": "操作人",
+            "x-$ref": "#/components/schemas/Admin",
+            "x-mock": "@integer"
+          },
+          "name": {
+            "type": "string",
+            "description": "任务名称",
+            "x-mock": "@ctitle"
+          },
+          "description": {
+            "type": "string",
+            "description": "任务描述",
+            "x-mock": "@cparagraph"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TaskStatus"
+          },
+          "creator": {
+            "type": "integer",
+            "description": "创建人",
+            "x-$ref": "#/components/schemas/Admin",
+            "x-mock": "@integer"
+          },
+          "createAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "创建时间",
+            "x-mock": "@datetime"
+          },
+          "executeAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "下发时间",
+            "x-mock": "@datetime"
+          },
+          "completeAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "完成时间",
+            "x-mock": "@datetime"
+          },
+          "updateAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "更新时间",
+            "x-mock": "@datetime"
+          }
+        }
+      },
+      "ActionType": {
+        "type": "string",
+        "description": "动作类型",
+        "enum": [
+          "TEST",
+          "BUILD",
+          "PREVIEW",
+          "PUBLISH",
+          "OTHER"
+        ]
+      },
+      "TaskStatus": {
+        "type": "string",
+        "description": "任务执行状态(0未执行/1执行中/2执行成功/3执行失败)",
+        "default": "Pending",
+        "enum": [
+          "Pending",
+          "Processing",
+          "Success",
+          "Fail"
+        ]
+      }
+    },
+    "requestBodies": {},
+    "responses": {}
+  },
+  "tags": [
+    {
+      "name": "Admins",
+      "description": "管理员"
+    },
+    {
+      "name": "Projects",
+      "description": "项目"
+    },
+    {
+      "name": "Plans",
+      "description": "计划&任务相关"
+    },
+    {
+      "name": "Hooks",
+      "description": "webhooks"
+    },
+    {
+      "name": "Actions",
+      "description": "actions"
+    }
+  ]
+}

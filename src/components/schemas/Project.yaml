@@ -1,0 +1,29 @@
+Project:
+  type: object
+  properties:
+    id:
+      type: integer
+      x-mock: '@integer'
+    name:
+      type: string
+      x-mock: '@ctitle'
+    repository:
+      type: string
+      x-mock: '@url'
+
+    creator:
+      type: integer
+      description: 创建人
+      x-$ref: '#/components/schemas/Admin'
+      x-mock: '@integer'
+    createAt:
+      type: string
+      format: date-time
+      description: 创建时间
+      x-mock: '@datetime'
+    updateAt:
+      type: string
+      format: date-time
+      description: 更新时间
+      x-mock: '@datetime'
+

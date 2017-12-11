@@ -1,0 +1,12 @@
+tags:
+  - name: Admins
+    description: 管理员
+  - name: Projects
+    description: 项目
+  - name: Plans
+    description: 计划&任务相关
+  - name: Hooks
+    description: webhooks
+  - name: Actions
+    description: actions
+

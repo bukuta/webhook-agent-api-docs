@@ -1,0 +1,31 @@
+Branch:
+  type: object
+  description: 分支
+  properties:
+    id:
+      type: integer
+      x-mock: '@integer'
+    project:
+      type: integer
+      x-mock: '@integer'
+      x-$ref: '#/components/schemas/Project'
+    protected:
+      type: boolean
+      x-mock: '@boolean'
+    creator:
+      type: integer
+      description: 创建人
+      x-$ref: '#/components/schemas/Admin'
+      x-mock: '@integer'
+    createAt:
+      type: string
+      format: date-time
+      description: 创建时间
+      x-mock: '@datetime'
+    updateAt:
+      type: string
+      format: date-time
+      description: 更新时间
+      x-mock: '@datetime'
+
+

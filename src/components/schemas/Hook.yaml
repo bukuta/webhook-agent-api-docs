@@ -1,0 +1,26 @@
+Hook:
+  type: object
+  properties:
+    id:
+      type: integer
+      x-mock: '@integer'
+    name:
+      type: string
+      x-mock: '@string'
+    type:
+      type: string
+      x-mock: '@string'
+
+    creator:
+      type: integer
+      x-$ref: '#/components/schemas/DeviceType'
+      x-mock: '@integer'
+    createAt:
+      type: string
+      format: date-time
+      x-mock: '@datetime'
+    updateAt:
+      type: string
+      format: date-time
+      x-mock: '@datetime'
+

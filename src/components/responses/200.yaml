@@ -1,0 +1,10 @@
+200:
+  '@isTemplate': true
+  200:
+    description: <%=typeof description=='undefined'?'OK':description%>
+    content:
+      application/json:
+        schema:
+          type: Object 
+          $ref: '<%=item%>'
+

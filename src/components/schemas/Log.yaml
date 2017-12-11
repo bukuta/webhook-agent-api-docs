@@ -1,0 +1,23 @@
+Log:
+  type: object
+  description: 日志
+  properties:
+    id:
+      type: integer
+      format: int32
+      x-mock: '@integer'
+    content:
+      type: string
+      x-mock: '@cparagraph'
+    task:
+      type: integer
+      x-mock: '@integer'
+
+    createAt:
+      type: string
+      format: date-time
+      x-mock: '@datetime'
+    updateAt:
+      type: string
+      format: date-time
+      x-mock: '@datetime'

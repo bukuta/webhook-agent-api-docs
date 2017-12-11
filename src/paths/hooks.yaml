@@ -1,0 +1,9 @@
+'/projects/hooks':
+  get:
+    tags:
+      - Hooks
+    description: fetch project hooks
+    responses:
+      '@#/components/responses/200.array':
+        '@item': '#/components/schemas/Hook'
+

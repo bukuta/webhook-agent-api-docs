@@ -1,0 +1,56 @@
+Plan:
+  type: object
+  description: 计划
+  required:
+    - name
+  properties:
+    id:
+      type: integer
+      format: int32
+      x-mock: '@integer'
+    operator:
+      type: integer
+      description: 操作人
+      x-$ref: '#/components/schemas/Admin'
+      x-mock: '@integer'
+    name:
+      type: string
+      description: 任务名称
+      x-mock: '@ctitle'
+    description:
+      type: string
+      description: 任务描述
+      x-mock: '@cparagraph'
+    status:
+      $ref: '#/components/schemas/TaskStatus'
+    scheduledAt:
+      type: string
+      format: date-time
+      description: 定时时间
+      x-mock: '@datetime'
+    executeAt:
+      type: string
+      format: date-time
+      description: 执行时间
+      x-mock: '@datetime'
+    completeAt:
+      type: string
+      format: date-time
+      description: 完成时间
+      x-mock: '@datetime'
+
+
+    creator:
+      type: integer
+      description: 创建人
+      x-$ref: '#/components/schemas/Admin'
+      x-mock: '@integer'
+    createAt:
+      type: string
+      format: date-time
+      description: 创建时间
+      x-mock: '@datetime'
+    updateAt:
+      type: string
+      format: date-time
+      x-mock: '@datetime'

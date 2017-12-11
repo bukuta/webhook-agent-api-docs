@@ -1,0 +1,69 @@
+'/admins':
+  get:
+    tags:
+      - Admins
+    description: fetch admins
+    responses:
+      '@#/components/responses/200.array':
+        '@item': '#/components/schemas/Admin'
+
+  post:
+    tags:
+      - Admins
+    description: create admin
+    '@#/components/requestBodies/omitId':
+      '@item': '#/components/schemas/Admin'
+    responses:
+      '@#/components/responses/201':
+        '@item': '#/components/schemas/Admin'
+
+'/admins/{adminId}':
+  get:
+    tags:
+      - Admins
+    description: fetch admin
+    parameters:
+      - name: adminId
+        in: path
+        description: ID of admin
+        required: true
+        schema:
+          type: integer
+          format: int32
+    responses:
+      '@#/components/responses/200':
+        '@item': '#/components/schemas/Admin'
+
+  patch:
+    tags:
+      - Admins
+    description: update admin
+    parameters:
+      - name: adminId
+        in: path
+        description: ID of Admin
+        required: true
+        schema:
+          type: integer
+          format: int32
+    '@#/components/requestBodies/omitId':
+      '@item': '#/components/schemas/Admin'
+    responses:
+      '@#/components/responses/200':
+        '@item': '#/components/schemas/Admin'
+
+  delete:
+    tags:
+      - Admins
+    description: delete admin
+    parameters:
+      - name: adminId
+        in: path
+        description: ID of admin
+        required: true
+        schema:
+          type: integer
+          format: int32
+    responses:
+      '@#/components/responses/204': true
+

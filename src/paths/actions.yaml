@@ -1,0 +1,35 @@
+'/projects/{projectId}/actions':
+  get:
+    tags:
+      - Actions
+    description: fetch project actions
+    parameters:
+      - name: projectId
+        in: path
+        description: ID of Project
+        required: true
+        schema:
+          type: integer
+          format: int32
+    responses:
+      '@#/components/responses/200.array':
+        '@item': '#/components/schemas/Action'
+
+  post:
+    tags:
+      - Actions
+    description: create project actions
+    parameters:
+      - name: projectId
+        in: path
+        description: ID of Project
+        required: true
+        schema:
+          type: integer
+          format: int32
+    '@#/components/requestBodies/omitId':
+      '@item': '#/components/schemas/Action'
+    responses:
+      '@#/components/responses/201':
+        '@item': '#/components/schemas/Action'
+

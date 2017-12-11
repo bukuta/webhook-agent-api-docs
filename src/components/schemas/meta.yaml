@@ -1,0 +1,28 @@
+ActionType:
+  type: string
+  description: 动作类型
+  enum:
+    - TEST
+    - BUILD
+    - PREVIEW
+    - PUBLISH
+    - OTHER
+
+TaskStatus:
+  type: string
+  description: 任务执行状态(0未执行/1执行中/2执行成功/3执行失败)
+  default: Pending
+  enum:
+    - Pending
+    - Processing
+    - Success
+    - Fail
+
+
+
+
+
+
+
+
+

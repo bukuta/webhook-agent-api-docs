@@ -1,0 +1,414 @@
+{
+  "/projects/{projectId}/actions": {
+    "get": {
+      "200": {
+        "description": "fetch project actions",
+        "mock": {
+          "total": "@integer",
+          "items|1-10": [
+            {
+              "id": "@integer",
+              "type|1": [
+                "TEST",
+                "BUILD",
+                "PREVIEW",
+                "PUBLISH",
+                "OTHER"
+              ],
+              "project": "@integer",
+              "hook": "@integer",
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          ]
+        }
+      }
+    },
+    "post": {
+      "201": {
+        "description": "create project actions",
+        "mock": {
+          "_res": {
+            "status": 201,
+            "data": {
+              "id": "@integer",
+              "type|1": [
+                "TEST",
+                "BUILD",
+                "PREVIEW",
+                "PUBLISH",
+                "OTHER"
+              ],
+              "project": "@integer",
+              "hook": "@integer",
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          }
+        }
+      }
+    }
+  },
+  "/admins": {
+    "get": {
+      "200": {
+        "description": "fetch admins",
+        "mock": {
+          "total": "@integer",
+          "items|1-10": [
+            {
+              "id": "@integer",
+              "name": "@word",
+              "cname": "@cname",
+              "password": "",
+              "status": "0",
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          ]
+        }
+      }
+    },
+    "post": {
+      "201": {
+        "description": "create admin",
+        "mock": {
+          "_res": {
+            "status": 201,
+            "data": {
+              "id": "@integer",
+              "name": "@word",
+              "cname": "@cname",
+              "password": "",
+              "status": "0",
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          }
+        }
+      }
+    }
+  },
+  "/admins/{adminId}": {
+    "get": {
+      "200": {
+        "description": "fetch admin",
+        "mock": {
+          "id": "@integer",
+          "name": "@word",
+          "cname": "@cname",
+          "password": "",
+          "status": "0",
+          "creator": "@integer",
+          "createAt": "@datetime",
+          "updateAt": "@datetime"
+        }
+      }
+    },
+    "patch": {
+      "200": {
+        "description": "update admin",
+        "mock": {
+          "id": "@integer",
+          "name": "@word",
+          "cname": "@cname",
+          "password": "",
+          "status": "0",
+          "creator": "@integer",
+          "createAt": "@datetime",
+          "updateAt": "@datetime"
+        }
+      }
+    },
+    "delete": {
+      "204": {
+        "description": "delete admin",
+        "mock": {
+          "_res": {
+            "status": 204,
+            "data": {}
+          }
+        }
+      }
+    }
+  },
+  "/projects/hooks": {
+    "get": {
+      "200": {
+        "description": "fetch project hooks",
+        "mock": {
+          "total": "@integer",
+          "items|1-10": [
+            {
+              "id": "@integer",
+              "name": "@string",
+              "type": "@string",
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "/projects": {
+    "get": {
+      "200": {
+        "description": "fetch projects",
+        "mock": {
+          "total": "@integer",
+          "items|1-10": [
+            {
+              "id": "@integer",
+              "name": "@ctitle",
+              "repository": "@url",
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          ]
+        }
+      }
+    },
+    "post": {
+      "201": {
+        "description": "create projects",
+        "mock": {
+          "_res": {
+            "status": 201,
+            "data": {
+              "id": "@integer",
+              "name": "@ctitle",
+              "repository": "@url",
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          }
+        }
+      }
+    }
+  },
+  "/projects/{projectId}": {
+    "get": {
+      "200": {
+        "description": "fetch project",
+        "mock": {
+          "id": "@integer",
+          "name": "@ctitle",
+          "repository": "@url",
+          "creator": "@integer",
+          "createAt": "@datetime",
+          "updateAt": "@datetime"
+        }
+      }
+    },
+    "patch": {
+      "200": {
+        "description": "update project",
+        "mock": {
+          "id": "@integer",
+          "name": "@ctitle",
+          "repository": "@url",
+          "creator": "@integer",
+          "createAt": "@datetime",
+          "updateAt": "@datetime"
+        }
+      }
+    },
+    "delete": {
+      "204": {
+        "description": "delete project",
+        "mock": {
+          "_res": {
+            "status": 204,
+            "data": {}
+          }
+        }
+      }
+    }
+  },
+  "/plans/{planId}": {
+    "get": {
+      "200": {
+        "description": "fetch Plan By ID",
+        "mock": {
+          "id": "@integer",
+          "operator": "@integer",
+          "name": "@ctitle",
+          "description": "@cparagraph",
+          "status|1": [
+            "Pending",
+            "Processing",
+            "Success",
+            "Fail"
+          ],
+          "scheduledAt": "@datetime",
+          "executeAt": "@datetime",
+          "completeAt": "@datetime",
+          "creator": "@integer",
+          "createAt": "@datetime",
+          "updateAt": "@datetime"
+        }
+      },
+      "404": {
+        "description": "fetch Plan By ID",
+        "mock": {
+          "_res": {
+            "status": 404,
+            "data": {}
+          }
+        }
+      }
+    }
+  },
+  "/plans/{planId}/tasks": {
+    "get": {
+      "200": {
+        "description": "fetch tasks of plan",
+        "mock": {
+          "total": "@integer",
+          "items|1-10": [
+            {
+              "id": "@integer",
+              "plan": "@integer",
+              "operator": "@integer",
+              "name": "@ctitle",
+              "description": "@cparagraph",
+              "status|1": [
+                "Pending",
+                "Processing",
+                "Success",
+                "Fail"
+              ],
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "executeAt": "@datetime",
+              "completeAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          ]
+        }
+      },
+      "404": {
+        "description": "fetch tasks of plan",
+        "mock": {
+          "_res": {
+            "status": 404,
+            "data": {}
+          }
+        }
+      }
+    }
+  },
+  "/tasks/{taskId}/logs": {
+    "get": {
+      "200": {
+        "description": "fetch logs of task",
+        "mock": {
+          "total": "@integer",
+          "items|1-10": [
+            {
+              "id": "@integer",
+              "content": "@cparagraph",
+              "task": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          ]
+        }
+      },
+      "404": {
+        "description": "fetch logs of task",
+        "mock": {
+          "_res": {
+            "status": 404,
+            "data": {}
+          }
+        }
+      }
+    }
+  },
+  "/session": {
+    "post": {
+      "201": {
+        "description": "用户登录",
+        "mock": {
+          "_res": {
+            "status": 201,
+            "data": {
+              "id": "@integer",
+              "name": "@word",
+              "cname": "@cname",
+              "password": "",
+              "status": "0",
+              "creator": "@integer",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          }
+        }
+      },
+      "404": {
+        "description": "用户登录",
+        "mock": {
+          "_res": {
+            "status": 404,
+            "data": {}
+          }
+        }
+      },
+      "405": {
+        "description": "用户登录",
+        "mock": {
+          "_res": {
+            "status": 405,
+            "data": {}
+          }
+        }
+      }
+    },
+    "delete": {
+      "204": {
+        "description": "用户登出",
+        "mock": {
+          "_res": {
+            "status": 204,
+            "data": {}
+          }
+        }
+      }
+    }
+  },
+  "/user": {
+    "get": {
+      "200": {
+        "description": "fetch User",
+        "mock": {
+          "id": "@integer",
+          "name": "@word",
+          "cname": "@cname",
+          "password": "",
+          "status": "0",
+          "creator": "@integer",
+          "createAt": "@datetime",
+          "updateAt": "@datetime"
+        }
+      },
+      "401": {
+        "description": "fetch User",
+        "mock": {
+          "_res": {
+            "status": 401,
+            "data": {}
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Webhook-agent Api Descriptions
+  description: Webhook-agent项目接口描述 <br /><a href='https://github.com/bukuta/webhook-agent' target="_blank">mock-server</a>
+servers:
+  - description: SwaggerHub API Auto Mocking
+    url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'
+externalDocs:
+  description: 安全网络指挥官wiki
+  url: 'https://github.com/bukuta/webhook-agent'
+paths:
+components:
+  schemas:
+  requestBodies:
+

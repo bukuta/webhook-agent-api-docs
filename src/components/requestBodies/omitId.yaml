@@ -1,0 +1,15 @@
+omitId:
+  '@isTemplate': true
+  requestBody:
+    content:
+      application/json:
+        schema:
+          x-omit:
+            id: 1
+            createAt: 1
+            updateAt: 1
+            creator: 1
+            updater: 1
+          $ref: '<%=item%>'
+
+

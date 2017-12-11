@@ -1,0 +1,119 @@
+{
+  "Action": {
+    "id": "@integer",
+    "type|1": [
+      "TEST",
+      "BUILD",
+      "PREVIEW",
+      "PUBLISH",
+      "OTHER"
+    ],
+    "project": "@integer",
+    "hook": "@integer",
+    "creator": "@integer",
+    "createAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "Admin": {
+    "id": "@integer",
+    "name": "@word",
+    "cname": "@cname",
+    "password": "",
+    "status": "0",
+    "creator": "@integer",
+    "createAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "Branch": {
+    "id": "@integer",
+    "project": "@integer",
+    "protected": "@boolean",
+    "creator": "@integer",
+    "createAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "Hook": {
+    "id": "@integer",
+    "name": "@string",
+    "type": "@string",
+    "creator": "@integer",
+    "createAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "Log": {
+    "id": "@integer",
+    "content": "@cparagraph",
+    "task": "@integer",
+    "createAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "Plan": {
+    "id": "@integer",
+    "operator": "@integer",
+    "name": "@ctitle",
+    "description": "@cparagraph",
+    "status|1": [
+      "Pending",
+      "Processing",
+      "Success",
+      "Fail"
+    ],
+    "scheduledAt": "@datetime",
+    "executeAt": "@datetime",
+    "completeAt": "@datetime",
+    "creator": "@integer",
+    "createAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "Project": {
+    "id": "@integer",
+    "name": "@ctitle",
+    "repository": "@url",
+    "creator": "@integer",
+    "createAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "Site|1-10": {
+    "id": "@integer",
+    "name": "@ctitle",
+    "description": "@cparagraph",
+    "maxConcurrency": "@integer(1,10000)",
+    "admins|1-10": [
+      "@integer"
+    ],
+    "creator": "@integer",
+    "createAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "Task": {
+    "id": "@integer",
+    "plan": "@integer",
+    "operator": "@integer",
+    "name": "@ctitle",
+    "description": "@cparagraph",
+    "status|1": [
+      "Pending",
+      "Processing",
+      "Success",
+      "Fail"
+    ],
+    "creator": "@integer",
+    "createAt": "@datetime",
+    "executeAt": "@datetime",
+    "completeAt": "@datetime",
+    "updateAt": "@datetime"
+  },
+  "ActionType|1": [
+    "TEST",
+    "BUILD",
+    "PREVIEW",
+    "PUBLISH",
+    "OTHER"
+  ],
+  "TaskStatus|1": [
+    "Pending",
+    "Processing",
+    "Success",
+    "Fail"
+  ]
+}

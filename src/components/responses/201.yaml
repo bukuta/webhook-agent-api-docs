@@ -1,0 +1,10 @@
+201:
+  '@isTemplate': true
+  201:
+    description: <%= typeof description!='undefined'?description:'Created'%>
+    content:
+      application/json:
+        schema:
+          type: Object 
+          $ref: '<%=item%>'
+

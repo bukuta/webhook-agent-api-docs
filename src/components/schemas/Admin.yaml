@@ -1,0 +1,41 @@
+Admin:
+  type: object
+  description: 管理员
+  properties:
+    id:
+      type: integer
+      x-mock: '@integer'
+    name:
+      type: string
+      x-mock: '@word'
+
+    cname:
+      type: string
+      x-mock: '@cname'
+
+    password:
+      type: string
+      x-mock: ''
+
+    status:
+      type: integer
+      description: 用户目前的状态(0允许/1禁止/2锁定)
+      enum:
+        - 0
+        - 1
+        - 2
+      x-mock: '0'
+
+    creator:
+      type: integer
+      x-$ref: '#/components/schemas/DeviceType'
+      x-mock: '@integer'
+    createAt:
+      type: string
+      format: date-time
+      x-mock: '@datetime'
+    updateAt:
+      type: string
+      format: date-time
+      x-mock: '@datetime'
+

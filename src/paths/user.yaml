@@ -1,0 +1,65 @@
+/session:
+  post:
+    tags:
+      - Session
+    operationId: createSession
+    summary: create session of a user
+    description: 用户登录
+    requestBody:
+      content:
+        application/json:
+          schema:
+            properties:
+              account:
+                type: integer
+                format: int32
+              password:
+                type: string
+    responses:
+      '@#/components/responses/201':
+        '@item': '#/components/schemas/Admin'
+      '@#/components/responses/404': true
+      '@#/components/responses/405': true
+      #200:
+        #description: <%=typeof description=='undefined'?'OK':description%>
+        #content:
+          #application/json:
+            #schema:
+              ##type: Object 
+              #x-mock-code: |
+                #{
+                  #"_res": {
+                    #"status": function({ _req }) {
+                      #let { body } = _req;
+                      #let { name, password } = body;
+                      #let isSysAdmin = name == 'admin' && password == '123456';
+                      #let isSiteAdmin = name == 'guest' && password == '123456';
+                      #return isSysAdmin || isSiteAdmin ? 201 : 404;
+                    #},
+                    #"data": function({ _req }) {
+                      #return this.status === 201 ? _req.body : { "success": false };
+                    #}
+                  #}
+                #}
+
+  delete:
+    tags:
+      - Session
+    operationId: destroySession
+    summary: destroy session of a user
+    description: 用户登出
+    responses:
+      '@#/components/responses/204': true
+
+/user:
+  get:
+    tags:
+      - Session
+    summary: fetch User
+    description: fetch User
+    operationId: fetchUser
+    responses:
+      '@#/components/responses/200':
+        '@item': '#/components/schemas/Admin'
+      '@#/components/responses/401': true
+
