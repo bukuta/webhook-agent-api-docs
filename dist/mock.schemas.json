@@ -1,6 +1,6 @@
 {
   "Action": {
-    "id": "@integer",
+    "id": "@integer(0,100000)",
     "type|1": [
       "TEST",
       "BUILD",
@@ -10,45 +10,61 @@
     ],
     "project": "@integer",
     "hook": "@integer",
-    "creator": "@integer",
+    "creator": "@integer(0,100000)",
     "createAt": "@datetime",
     "updateAt": "@datetime"
   },
   "Admin": {
-    "id": "@integer",
+    "id": "@integer(0,100000)",
     "name": "@word",
     "cname": "@cname",
     "password": "",
     "status": "0",
-    "creator": "@integer",
+    "creator": "@integer(0,100000)",
     "createAt": "@datetime",
     "updateAt": "@datetime"
   },
   "Branch": {
-    "id": "@integer",
+    "id": "@integer(0,100000)",
+    "name": "@string",
     "project": "@integer",
     "protected": "@boolean",
-    "creator": "@integer",
+    "lastCommit": "@commitid",
     "createAt": "@datetime",
     "updateAt": "@datetime"
   },
+  "Commit": {
+    "id": "@string",
+    "author_name": "@name",
+    "author_email": "@email",
+    "message": "@paragraph",
+    "createAt": "@datetime"
+  },
+  "Diff": {
+    "id": "@integer(0,100000)",
+    "file": "@path",
+    "oldCommit": "@string",
+    "newCommit": "@string",
+    "alines": "@string",
+    "blines": "@string"
+  },
   "Hook": {
-    "id": "@integer",
+    "id": "@integer(0,100000)",
     "name": "@string",
     "type": "@string",
-    "creator": "@integer",
+    "creator": "@integer(0,100000)",
     "createAt": "@datetime",
     "updateAt": "@datetime"
   },
   "Log": {
-    "id": "@integer",
+    "id": "@integer(0,100000)",
     "content": "@cparagraph",
-    "task": "@integer",
+    "task": "@integer(0,100000)",
     "createAt": "@datetime",
     "updateAt": "@datetime"
   },
   "Plan": {
-    "id": "@integer",
+    "id": "@integer(0,100000)",
     "operator": "@integer",
     "name": "@ctitle",
     "description": "@cparagraph",
@@ -61,34 +77,21 @@
     "scheduledAt": "@datetime",
     "executeAt": "@datetime",
     "completeAt": "@datetime",
-    "creator": "@integer",
+    "creator": "@integer(0,100000)",
     "createAt": "@datetime",
     "updateAt": "@datetime"
   },
   "Project": {
-    "id": "@integer",
+    "id": "@integer(0,100000)",
     "name": "@ctitle",
-    "repository": "@url",
-    "creator": "@integer",
-    "createAt": "@datetime",
-    "updateAt": "@datetime"
-  },
-  "Site|1-10": {
-    "id": "@integer",
-    "name": "@ctitle",
-    "description": "@cparagraph",
-    "maxConcurrency": "@integer(1,10000)",
-    "admins|1-10": [
-      "@integer"
-    ],
-    "creator": "@integer",
+    "repository": "https://github.com/@word(6)/@word(6).git",
+    "creator": "@integer(0,100000)",
     "createAt": "@datetime",
     "updateAt": "@datetime"
   },
   "Task": {
-    "id": "@integer",
-    "plan": "@integer",
-    "operator": "@integer",
+    "id": "@integer(0,100000)",
+    "plan": "@integer(0,100000)",
     "name": "@ctitle",
     "description": "@cparagraph",
     "status|1": [
@@ -97,12 +100,15 @@
       "Success",
       "Fail"
     ],
-    "creator": "@integer",
+    "creator": "@integer(0,100000)",
     "createAt": "@datetime",
     "executeAt": "@datetime",
     "completeAt": "@datetime",
     "updateAt": "@datetime"
   },
+  "ID": "@integer(0,100000)",
+  "TOTAL": "@integer(10,100)",
+  "COMMITID": "@string",
   "ActionType|1": [
     "TEST",
     "BUILD",

@@ -3,15 +3,13 @@ Log:
   description: 日志
   properties:
     id:
-      type: integer
-      format: int32
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     content:
       type: string
       x-mock: '@cparagraph'
     task:
-      type: integer
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
+      x-$ref: '#/components/schemas/Task'
 
     createAt:
       type: string

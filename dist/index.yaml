@@ -8,8 +8,11 @@ info:
 servers:
   - description: SwaggerHub API Auto Mocking
     url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'
+x-server:
+  - description: 后端
+    url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'
 externalDocs:
-  description: 安全网络指挥官wiki
+  description: webhook-agent
   url: 'https://github.com/bukuta/webhook-agent'
 paths:
   '/projects/{projectId}/actions':
@@ -34,8 +37,7 @@ paths:
                 type: object
                 properties:
                   total:
-                    type: integer
-                    x-mock: '@integer'
+                    $ref: '#/components/schemas/TOTAL'
                   items:
                     type: array
                     items:
@@ -90,8 +92,7 @@ paths:
                 type: object
                 properties:
                   total:
-                    type: integer
-                    x-mock: '@integer'
+                    $ref: '#/components/schemas/TOTAL'
                   items:
                     type: array
                     items:
@@ -226,8 +227,7 @@ paths:
                 type: object
                 properties:
                   total:
-                    type: integer
-                    x-mock: '@integer'
+                    $ref: '#/components/schemas/TOTAL'
                   items:
                     type: array
                     items:
@@ -246,8 +246,7 @@ paths:
                 type: object
                 properties:
                   total:
-                    type: integer
-                    x-mock: '@integer'
+                    $ref: '#/components/schemas/TOTAL'
                   items:
                     type: array
                     items:
@@ -275,7 +274,7 @@ paths:
                   x-mock: '@ctitle'
                 repository:
                   type: string
-                  x-mock: '@url'
+                  x-mock: 'https://github.com/@word(6)/@word(6).git'
   '/projects/{projectId}':
     get:
       tags:
@@ -297,6 +296,8 @@ paths:
               schema:
                 type: Object
                 $ref: '#/components/schemas/Project'
+        '404':
+          description: Not Found
     patch:
       tags:
         - Projects
@@ -317,6 +318,8 @@ paths:
               schema:
                 type: Object
                 $ref: '#/components/schemas/Project'
+        '404':
+          description: Not Found
       requestBody:
         content:
           application/json:
@@ -328,7 +331,7 @@ paths:
                   x-mock: '@ctitle'
                 repository:
                   type: string
-                  x-mock: '@url'
+                  x-mock: 'https://github.com/@word(6)/@word(6).git'
     delete:
       tags:
         - Projects
@@ -344,6 +347,8 @@ paths:
       responses:
         '204':
           description: No Content
+        '404':
+          description: Not Found
   '/plans/{planId}':
     get:
       tags:
@@ -393,8 +398,7 @@ paths:
                 type: object
                 properties:
                   total:
-                    type: integer
-                    x-mock: '@integer'
+                    $ref: '#/components/schemas/TOTAL'
                   items:
                     type: array
                     items:
@@ -425,8 +429,7 @@ paths:
                 type: object
                 properties:
                   total:
-                    type: integer
-                    x-mock: '@integer'
+                    $ref: '#/components/schemas/TOTAL'
                   items:
                     type: array
                     items:
@@ -495,8 +498,7 @@ components:
       description: 动作
       properties:
         id:
-          type: integer
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         type:
           $ref: '#/components/schemas/ActionType'
         project:
@@ -507,10 +509,8 @@ components:
           type: integer
           x-mock: '@integer'
         creator:
-          type: integer
-          description: 创建人
           x-$ref: '#/components/schemas/Admin'
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         createAt:
           type: string
           format: date-time
@@ -519,15 +519,14 @@ components:
         updateAt:
           type: string
           format: date-time
-          description: 更新时间
+          description: 更新时间123222
           x-mock: '@datetime'
     Admin:
       type: object
       description: 管理员
       properties:
         id:
-          type: integer
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         name:
           type: string
           x-mock: '@word'
@@ -546,9 +545,8 @@ components:
             - 2
           x-mock: '0'
         creator:
-          type: integer
-          x-$ref: '#/components/schemas/DeviceType'
-          x-mock: '@integer'
+          x-$ref: '#/components/schemas/Admin'
+          $ref: '#/components/schemas/ID'
         createAt:
           type: string
           format: date-time
@@ -562,8 +560,10 @@ components:
       description: 分支
       properties:
         id:
-          type: integer
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
+        name:
+          type: string
+          x-mock: '@string'
         project:
           type: integer
           x-mock: '@integer'
@@ -571,11 +571,9 @@ components:
         protected:
           type: boolean
           x-mock: '@boolean'
-        creator:
-          type: integer
-          description: 创建人
-          x-$ref: '#/components/schemas/Admin'
-          x-mock: '@integer'
+        lastCommit:
+          type: string
+          x-mock: '@commitid'
         createAt:
           type: string
           format: date-time
@@ -586,12 +584,50 @@ components:
           format: date-time
           description: 更新时间
           x-mock: '@datetime'
+    Commit:
+      type: object
+      properties:
+        id:
+          type: string
+          x-mock: '@string'
+        author_name:
+          type: string
+          x-mock: '@name'
+        author_email:
+          type: string
+          x-mock: '@email'
+        message:
+          type: string
+          x-mock: '@paragraph'
+        createAt:
+          type: string
+          format: date-time
+          x-mock: '@datetime'
+    Diff:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/ID'
+        file:
+          type: string
+          x-mock: '@path'
+        oldCommit:
+          type: string
+          x-mock: '@string'
+        newCommit:
+          type: string
+          x-mock: '@string'
+        alines:
+          type: string
+          x-mock: '@string'
+        blines:
+          type: string
+          x-mock: '@string'
     Hook:
       type: object
       properties:
         id:
-          type: integer
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         name:
           type: string
           x-mock: '@string'
@@ -599,9 +635,8 @@ components:
           type: string
           x-mock: '@string'
         creator:
-          type: integer
           x-$ref: '#/components/schemas/DeviceType'
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         createAt:
           type: string
           format: date-time
@@ -615,15 +650,13 @@ components:
       description: 日志
       properties:
         id:
-          type: integer
-          format: int32
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         content:
           type: string
           x-mock: '@cparagraph'
         task:
-          type: integer
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
+          x-$ref: '#/components/schemas/Task'
         createAt:
           type: string
           format: date-time
@@ -639,9 +672,7 @@ components:
         - name
       properties:
         id:
-          type: integer
-          format: int32
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         operator:
           type: integer
           description: 操作人
@@ -673,10 +704,8 @@ components:
           description: 完成时间
           x-mock: '@datetime'
         creator:
-          type: integer
-          description: 创建人
           x-$ref: '#/components/schemas/Admin'
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         createAt:
           type: string
           format: date-time
@@ -690,65 +719,16 @@ components:
       type: object
       properties:
         id:
-          type: integer
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         name:
           type: string
           x-mock: '@ctitle'
         repository:
           type: string
-          x-mock: '@url'
+          x-mock: 'https://github.com/@word(6)/@word(6).git'
         creator:
-          type: integer
-          description: 创建人
           x-$ref: '#/components/schemas/Admin'
-          x-mock: '@integer'
-        createAt:
-          type: string
-          format: date-time
-          description: 创建时间
-          x-mock: '@datetime'
-        updateAt:
-          type: string
-          format: date-time
-          description: 更新时间
-          x-mock: '@datetime'
-    Site:
-      type: object
-      description: 站点
-      required:
-        - name
-      properties:
-        id:
-          type: integer
-          format: int32
-          description: 站点id
-          x-mock: '@integer'
-        name:
-          type: string
-          description: 站点名称
-          x-mock: '@ctitle'
-        description:
-          type: string
-          description: 站点描述
-          x-mock: '@cparagraph'
-        maxConcurrency:
-          type: integer
-          format: int32
-          description: 最大并发数
-          x-mock: '@integer(1,10000)'
-        admins:
-          type: array
-          description: 管理员列表
-          items:
-            type: integer
-            x-mock: '@integer'
-            x-$ref: '#/components/schemas/Admin'
-        creator:
-          type: integer
-          description: 创建人
-          x-$ref: '#/components/schemas/Admin'
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         createAt:
           type: string
           format: date-time
@@ -766,19 +746,10 @@ components:
         - name
       properties:
         id:
-          type: integer
-          format: int32
-          description: 任务id
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         plan:
-          type: integer
           x-$ref: '#/components/schemas/Plan'
-          x-mock: '@integer'
-        operator:
-          type: integer
-          description: 操作人
-          x-$ref: '#/components/schemas/Admin'
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         name:
           type: string
           description: 任务名称
@@ -790,10 +761,8 @@ components:
         status:
           $ref: '#/components/schemas/TaskStatus'
         creator:
-          type: integer
-          description: 创建人
           x-$ref: '#/components/schemas/Admin'
-          x-mock: '@integer'
+          $ref: '#/components/schemas/ID'
         createAt:
           type: string
           format: date-time
@@ -814,6 +783,15 @@ components:
           format: date-time
           description: 更新时间
           x-mock: '@datetime'
+    ID:
+      type: integer
+      x-mock: '@integer(0,100000)'
+    TOTAL:
+      type: integer
+      x-mock: '@integer(10,100)'
+    COMMITID:
+      type: string
+      x-mock: '@string'
     ActionType:
       type: string
       description: 动作类型
@@ -845,3 +823,5 @@ tags:
     description: webhooks
   - name: Actions
     description: actions
+  - name: Session
+    description: 会话

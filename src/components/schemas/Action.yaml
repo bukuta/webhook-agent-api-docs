@@ -3,8 +3,7 @@ Action:
   description: 动作
   properties:
     id:
-      type: integer
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     type:
       $ref: '#/components/schemas/ActionType'
     project:
@@ -15,10 +14,8 @@ Action:
       type: integer
       x-mock: '@integer'
     creator:
-      type: integer
-      description: 创建人
       x-$ref: '#/components/schemas/Admin'
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     createAt:
       type: string
       format: date-time
@@ -27,6 +24,6 @@ Action:
     updateAt:
       type: string
       format: date-time
-      description: 更新时间
+      description: 更新时间123222
       x-mock: '@datetime'
 

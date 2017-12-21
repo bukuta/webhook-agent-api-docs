@@ -5,9 +5,7 @@ Plan:
     - name
   properties:
     id:
-      type: integer
-      format: int32
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     operator:
       type: integer
       description: 操作人
@@ -41,10 +39,8 @@ Plan:
 
 
     creator:
-      type: integer
-      description: 创建人
       x-$ref: '#/components/schemas/Admin'
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     createAt:
       type: string
       format: date-time

@@ -8,8 +8,7 @@
           type: object
           properties:
             total: 
-              type: integer
-              x-mock: '@integer'
+              $ref: '#/components/schemas/TOTAL'
             items:
               type: array
               items:

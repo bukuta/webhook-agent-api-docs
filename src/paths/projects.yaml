@@ -33,6 +33,7 @@
     responses:
       '@#/components/responses/200':
         '@item': '#/components/schemas/Project'
+      '@#/components/responses/404': true
 
   patch:
     tags:
@@ -51,6 +52,7 @@
     responses:
       '@#/components/responses/200':
         '@item': '#/components/schemas/Project'
+      '@#/components/responses/404': true
 
   delete:
     tags:
@@ -66,4 +68,5 @@
           format: int32
     responses:
       '@#/components/responses/204': true
+      '@#/components/responses/404': true
 

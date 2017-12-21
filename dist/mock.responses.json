@@ -4,10 +4,10 @@
       "200": {
         "description": "fetch project actions",
         "mock": {
-          "total": "@integer",
+          "total": "@integer(10,100)",
           "items|1-10": [
             {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "type|1": [
                 "TEST",
                 "BUILD",
@@ -17,7 +17,7 @@
               ],
               "project": "@integer",
               "hook": "@integer",
-              "creator": "@integer",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -32,7 +32,7 @@
           "_res": {
             "status": 201,
             "data": {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "type|1": [
                 "TEST",
                 "BUILD",
@@ -42,7 +42,7 @@
               ],
               "project": "@integer",
               "hook": "@integer",
-              "creator": "@integer",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -56,15 +56,15 @@
       "200": {
         "description": "fetch admins",
         "mock": {
-          "total": "@integer",
+          "total": "@integer(10,100)",
           "items|1-10": [
             {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "name": "@word",
               "cname": "@cname",
               "password": "",
               "status": "0",
-              "creator": "@integer",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -79,12 +79,12 @@
           "_res": {
             "status": 201,
             "data": {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "name": "@word",
               "cname": "@cname",
               "password": "",
               "status": "0",
-              "creator": "@integer",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -98,12 +98,12 @@
       "200": {
         "description": "fetch admin",
         "mock": {
-          "id": "@integer",
+          "id": "@integer(0,100000)",
           "name": "@word",
           "cname": "@cname",
           "password": "",
           "status": "0",
-          "creator": "@integer",
+          "creator": "@integer(0,100000)",
           "createAt": "@datetime",
           "updateAt": "@datetime"
         }
@@ -113,12 +113,12 @@
       "200": {
         "description": "update admin",
         "mock": {
-          "id": "@integer",
+          "id": "@integer(0,100000)",
           "name": "@word",
           "cname": "@cname",
           "password": "",
           "status": "0",
-          "creator": "@integer",
+          "creator": "@integer(0,100000)",
           "createAt": "@datetime",
           "updateAt": "@datetime"
         }
@@ -141,13 +141,13 @@
       "200": {
         "description": "fetch project hooks",
         "mock": {
-          "total": "@integer",
+          "total": "@integer(10,100)",
           "items|1-10": [
             {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "name": "@string",
               "type": "@string",
-              "creator": "@integer",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -161,13 +161,13 @@
       "200": {
         "description": "fetch projects",
         "mock": {
-          "total": "@integer",
+          "total": "@integer(10,100)",
           "items|1-10": [
             {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "name": "@ctitle",
-              "repository": "@url",
-              "creator": "@integer",
+              "repository": "https://github.com/@word(6)/@word(6).git",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -182,10 +182,10 @@
           "_res": {
             "status": 201,
             "data": {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "name": "@ctitle",
-              "repository": "@url",
-              "creator": "@integer",
+              "repository": "https://github.com/@word(6)/@word(6).git",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -199,12 +199,21 @@
       "200": {
         "description": "fetch project",
         "mock": {
-          "id": "@integer",
+          "id": "@integer(0,100000)",
           "name": "@ctitle",
-          "repository": "@url",
-          "creator": "@integer",
+          "repository": "https://github.com/@word(6)/@word(6).git",
+          "creator": "@integer(0,100000)",
           "createAt": "@datetime",
           "updateAt": "@datetime"
+        }
+      },
+      "404": {
+        "description": "fetch project",
+        "mock": {
+          "_res": {
+            "status": 404,
+            "data": {}
+          }
         }
       }
     },
@@ -212,12 +221,21 @@
       "200": {
         "description": "update project",
         "mock": {
-          "id": "@integer",
+          "id": "@integer(0,100000)",
           "name": "@ctitle",
-          "repository": "@url",
-          "creator": "@integer",
+          "repository": "https://github.com/@word(6)/@word(6).git",
+          "creator": "@integer(0,100000)",
           "createAt": "@datetime",
           "updateAt": "@datetime"
+        }
+      },
+      "404": {
+        "description": "update project",
+        "mock": {
+          "_res": {
+            "status": 404,
+            "data": {}
+          }
         }
       }
     },
@@ -230,6 +248,15 @@
             "data": {}
           }
         }
+      },
+      "404": {
+        "description": "delete project",
+        "mock": {
+          "_res": {
+            "status": 404,
+            "data": {}
+          }
+        }
       }
     }
   },
@@ -238,7 +265,7 @@
       "200": {
         "description": "fetch Plan By ID",
         "mock": {
-          "id": "@integer",
+          "id": "@integer(0,100000)",
           "operator": "@integer",
           "name": "@ctitle",
           "description": "@cparagraph",
@@ -251,7 +278,7 @@
           "scheduledAt": "@datetime",
           "executeAt": "@datetime",
           "completeAt": "@datetime",
-          "creator": "@integer",
+          "creator": "@integer(0,100000)",
           "createAt": "@datetime",
           "updateAt": "@datetime"
         }
@@ -272,12 +299,11 @@
       "200": {
         "description": "fetch tasks of plan",
         "mock": {
-          "total": "@integer",
+          "total": "@integer(10,100)",
           "items|1-10": [
             {
-              "id": "@integer",
-              "plan": "@integer",
-              "operator": "@integer",
+              "id": "@integer(0,100000)",
+              "plan": "@integer(0,100000)",
               "name": "@ctitle",
               "description": "@cparagraph",
               "status|1": [
@@ -286,7 +312,7 @@
                 "Success",
                 "Fail"
               ],
-              "creator": "@integer",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "executeAt": "@datetime",
               "completeAt": "@datetime",
@@ -311,12 +337,12 @@
       "200": {
         "description": "fetch logs of task",
         "mock": {
-          "total": "@integer",
+          "total": "@integer(10,100)",
           "items|1-10": [
             {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "content": "@cparagraph",
-              "task": "@integer",
+              "task": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -342,12 +368,12 @@
           "_res": {
             "status": 201,
             "data": {
-              "id": "@integer",
+              "id": "@integer(0,100000)",
               "name": "@word",
               "cname": "@cname",
               "password": "",
               "status": "0",
-              "creator": "@integer",
+              "creator": "@integer(0,100000)",
               "createAt": "@datetime",
               "updateAt": "@datetime"
             }
@@ -390,12 +416,12 @@
       "200": {
         "description": "fetch User",
         "mock": {
-          "id": "@integer",
+          "id": "@integer(0,100000)",
           "name": "@word",
           "cname": "@cname",
           "password": "",
           "status": "0",
-          "creator": "@integer",
+          "creator": "@integer(0,100000)",
           "createAt": "@datetime",
           "updateAt": "@datetime"
         }

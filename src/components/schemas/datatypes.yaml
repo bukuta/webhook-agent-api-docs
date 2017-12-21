@@ -1,0 +1,11 @@
+ID:
+  type: integer
+  x-mock: '@integer(0,100000)'
+
+TOTAL:
+  type: integer
+  x-mock: '@integer(10,100)'
+
+COMMITID:
+  type: string
+  x-mock: '@string'

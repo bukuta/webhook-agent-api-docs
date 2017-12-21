@@ -1,0 +1,21 @@
+Commit:
+  type: object
+  properties:
+    id:
+      type: string
+      x-mock: '@string'
+    author_name:
+      type: string
+      x-mock: '@name'
+    author_email:
+      type: string
+      x-mock: '@email'
+    message:
+      type: string
+      x-mock: '@paragraph'
+
+    createAt:
+      type: string
+      format: date-time
+      x-mock: '@datetime'
+

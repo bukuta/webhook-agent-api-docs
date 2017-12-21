@@ -1,0 +1,22 @@
+Diff:
+  type: object
+  properties:
+    id: 
+      $ref: '#/components/schemas/ID'
+    file:
+      type: string
+      x-mock: '@path'
+    oldCommit:
+      type: string
+      x-mock: '@string'
+    newCommit:
+      type: string
+      x-mock: '@string'
+    alines:
+      type: string
+      x-mock: '@string'
+    blines:
+      type: string
+      x-mock: '@string'
+
+

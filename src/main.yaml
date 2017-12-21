@@ -6,8 +6,11 @@ info:
 servers:
   - description: SwaggerHub API Auto Mocking
     url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'
+x-server:
+  - description: 后端
+    url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'
 externalDocs:
-  description: 安全网络指挥官wiki
+  description: webhook-agent
   url: 'https://github.com/bukuta/webhook-agent'
 paths:
 components:

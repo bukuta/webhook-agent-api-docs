@@ -3,8 +3,10 @@ Branch:
   description: 分支
   properties:
     id:
-      type: integer
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
+    name:
+      type: string
+      x-mock: '@string'
     project:
       type: integer
       x-mock: '@integer'
@@ -12,11 +14,10 @@ Branch:
     protected:
       type: boolean
       x-mock: '@boolean'
-    creator:
-      type: integer
-      description: 创建人
-      x-$ref: '#/components/schemas/Admin'
-      x-mock: '@integer'
+    lastCommit:
+      type: string
+      x-mock: '@commitid'
+
     createAt:
       type: string
       format: date-time

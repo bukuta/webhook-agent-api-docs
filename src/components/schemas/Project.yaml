@@ -2,20 +2,17 @@ Project:
   type: object
   properties:
     id:
-      type: integer
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     name:
       type: string
       x-mock: '@ctitle'
     repository:
       type: string
-      x-mock: '@url'
+      x-mock: 'https://github.com/@word(6)/@word(6).git'
 
     creator:
-      type: integer
-      description: 创建人
       x-$ref: '#/components/schemas/Admin'
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     createAt:
       type: string
       format: date-time

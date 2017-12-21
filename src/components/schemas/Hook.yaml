@@ -2,8 +2,7 @@ Hook:
   type: object
   properties:
     id:
-      type: integer
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     name:
       type: string
       x-mock: '@string'
@@ -12,9 +11,8 @@ Hook:
       x-mock: '@string'
 
     creator:
-      type: integer
       x-$ref: '#/components/schemas/DeviceType'
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     createAt:
       type: string
       format: date-time

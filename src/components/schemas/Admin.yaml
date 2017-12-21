@@ -3,8 +3,7 @@ Admin:
   description: 管理员
   properties:
     id:
-      type: integer
-      x-mock: '@integer'
+      $ref: '#/components/schemas/ID'
     name:
       type: string
       x-mock: '@word'
@@ -27,9 +26,8 @@ Admin:
       x-mock: '0'
 
     creator:
-      type: integer
-      x-$ref: '#/components/schemas/DeviceType'
-      x-mock: '@integer'
+      x-$ref: '#/components/schemas/Admin'
+      $ref: '#/components/schemas/ID'
     createAt:
       type: string
       format: date-time

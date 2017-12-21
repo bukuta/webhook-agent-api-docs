@@ -9,4 +9,6 @@ tags:
     description: webhooks
   - name: Actions
     description: actions
+  - name: Session
+    description: 会话
 
