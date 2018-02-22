@@ -186,7 +186,7 @@ class EasyMockClient extends Client {
     let url = `/api/mock?project_id=${projectId}&page_size=2000&page_index=1`;
     let res = await this._fetch(url);
     let apis = res.data.mocks;
-    debugClient('getApis', apis);
+    debugClient('getProjects', apis);
     this.apis[projectId] = apis;
     return apis;
   }
@@ -213,21 +213,6 @@ class EasyMockClient extends Client {
       data
     });
     debugClient('createApi', res);
-    //await this.getProjectApis(projectId);
-  }
-  async updateApi(id, {url, statusCode=200, method='get', description='example description', mode}) {
-    debugClient('updateApi');
-    let data = {
-      id,
-      url,
-      method,
-      description,
-      mode: JSON.stringify(mode),
-    };
-    let res = await this._create('/api/mock/update', {
-      data
-    });
-    debugClient('updateApi', res);
     //await this.getProjectApis(projectId);
   }
   async getGroupProject(groupName,projectName){

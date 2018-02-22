@@ -152,7 +152,6 @@ function collectMocks(schemas, root) {
   //
   let r = {};
   for (let name in schemas) {
-    debug6(name);
     let tmp = collectMocksFromEntity(schemas[name], root);
     if (tmp && Object.keys(tmp).length) {
       if (tmp.type == 'enum') {
@@ -167,7 +166,6 @@ function collectMocks(schemas, root) {
   return r;
 }
 function collectMocksFromEntity(schema, root) {
-  debug6(schema);
   let properties = schema.properties;
   let r = {};
   let type = '';
@@ -253,7 +251,6 @@ function collectMocksFromResponse(response, statusCode, root) {
         };
       }
     } else {
-      debug6(content);
       m = collectMocksFromEntity(content, root).mock;
     }
   }

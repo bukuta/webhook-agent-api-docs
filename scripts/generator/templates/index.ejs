@@ -1,0 +1,6 @@
+import data from './data.js';
+import entity from './entity.js';
+<%shapes.map(function(shape){ %>import <%=shape%>Shape from './shapes/<%=shape%>.js';
+<%})%>
+
+export { data, entity, <%=shapes.map(function(shape){return shape+'Shape';}).join(', ') %> };
