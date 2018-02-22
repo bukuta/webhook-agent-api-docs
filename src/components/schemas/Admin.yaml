@@ -3,17 +3,21 @@ Admin:
   description: 管理员
   properties:
     id:
+      description: ID
       $ref: '#/components/schemas/ID'
     name:
       type: string
+      description: 名字
       x-mock: '@word'
 
     cname:
       type: string
+      description: 中文名
       x-mock: '@cname'
 
     password:
       type: string
+      description: 密码
       x-mock: ''
 
     status:

@@ -1,0 +1,98 @@
+doctype html5
+html
+  head
+    meta(charset='utf-8')
+    title hello
+    link(href='index.css',rel="stylesheet")
+  body
+    #app(v-cloak)
+      .header
+        h1.brand 
+          | {{specs.info.title}}
+          span.version(style='font-size: .5em; margin-left: 1em') OpenApi: {{specs.openapi}}
+        p.project-description(v-html='specs.info.description')
+
+      .servers
+        ul
+          li(:key="server.name" v-for='server in specs.servers')
+            a(target='_blank',:href='server.url') {{server.name||server.description}} ({{server.url}})
+      .current-server
+        select(@onChange="changeServer",@change="changeServer")
+          option(:key="server.name" v-for='server in specs.servers' :value="server.name" :selected="server.name==currentServer.name")
+            | {{server.name||server.description}} ({{server.url}})
+
+
+      h2.section-title 标签
+      .section.tags
+        ul
+          li.tag(v-for='tag in specs.tags') {{tag.name}}/{{tag.description}}
+
+      div
+        button(@click='skipAllException') 只保留正常mock
+        button(@click='resetAll') 恢复
+      h2.section-title 请求
+      .section.paths
+        ul
+          li.path(v-for='(route,path) in specs.paths')
+            div
+              .path-title 
+                h3
+                  | {{path}} 
+                .actions
+                  label
+                    input(type='checkbox',@change='proxyIt(path,$event)') 
+                    | Proxy
+                  label
+                    input(type='checkbox',:checked='isSkip(path)',@change='skipIt(path,$event)') 
+                    | 禁用
+              ul
+                li.path-method(:class='"method-"+method',v-for='(methoddetail,method) in route')
+                  h4.path-description 
+                    .actions
+                      label
+                        select(@change='proxyIt(path,method,$event)')
+                          option(value="") 请选择Proxy
+                          option(:selected="isSelected(path,method,server.url)" :value='server.url',v-for='server in specs.servers') {{server.description}}
+                      label
+                        input(type='checkbox',:checked='isSkip(path,method)',@change='skipIt(path,method,$event)') 
+                        | 禁用
+                    | {{method}}:{{methoddetail.description}}:
+                    span.tag(v-for='tag in methoddetail.tags||[]') {{(tagsmap[tag]||{description:'no tag'}).description}}
+                  .responses
+                    .request
+                      h3 
+                        | Request
+                        button.try-request(@click='tryRequest(path,method,methoddetail)') try Request
+                      div.request-parameters(v-if='methoddetail.parameters') 请求参数: 
+                        .parameters-item(v-for='item in methoddetail.parameters') 
+                          span.parameters-item-name {{item.name}}
+                          | :{{item.description}}
+                      div.request-body(v-if='methoddetail.requestBody') 请求体:{{methoddetail.requestBody}}
+                    div.response
+                      h3 Response
+                      .response-item(v-for='(response,statuscode) in methoddetail.responses') 
+                        .actions
+                          label
+                            input(type='checkbox',:checked='isSkip(path,method,statuscode)',@change='skipIt(path,method,statuscode,$event)') 
+                            | 禁用
+                        | {{statuscode}}:{{response&&response.description}}
+
+    script(src='path-to-regexp.js')
+    script(src='mock.js')
+    script(src='vue.js')
+    script
+      | var data = 
+      != JSON.stringify(data)
+      | ;
+    script
+      | var decorations = 
+      != JSON.stringify(decorations,0,2)
+      | ;
+
+    script
+      | var currentServer = 
+      != JSON.stringify(currentServer||null,0,2)
+      | ;
+
+    script(src='index.js')
+

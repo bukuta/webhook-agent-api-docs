@@ -4,8 +4,9 @@ info:
   title: Webhook-agent Api Descriptions
   description: Webhook-agent项目接口描述 <br /><a href='https://github.com/bukuta/webhook-agent' target="_blank">mock-server</a>
 servers:
-  - description: SwaggerHub API Auto Mocking
-    url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'
+  - description: local mock
+    name: local_mock
+    url: '/api/v1'
 x-server:
   - description: 后端
     url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'

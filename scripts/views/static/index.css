@@ -1,0 +1,155 @@
+body{
+  margin: 0;
+}
+[v-cloak]{
+    display: none;
+}
+.header{
+  background: #20a0ff;
+  color: white;
+}
+.header .brand{
+  height: 80px;
+  line-height: 80px;
+  padding: 0 40px;
+}
+.header .version{
+  color: # aaa;
+}
+.header .project-description{
+  padding: 0 40px 20px;
+}
+.section{
+  padding: 0 40px;
+}
+.section::after{
+  display: block;
+  content: ' ';
+  clear: both;
+}
+.section-title{
+  /*background: #58B7FF;*/
+  padding: 0 40px;
+  /*color: white;*/
+  height: 40px;
+  line-height: 40px;
+  border-bottom: 1px solid #58B7FF;
+}
+.tags{
+
+}
+.tags .tag{
+  float: left;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin: 4px;
+  list-style: none;
+}
+
+.paths ul{
+  margin: 0;
+  padding: 0;
+}
+.paths .path{
+  list-style: none;
+  margin: 40px 0;
+  border: 1px solid #58B7FF;
+}
+.paths .path-title{
+  /*background: #58B7FF;*/
+  /*color: white;*/
+  height: 40px;
+  margin: 0;
+  padding: 0 20px 0;;
+  line-height: 40px;
+  border-bottom: 1px solid #58B7FF;
+}
+.path .tag{
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin: 4px;
+  list-style: none;
+}
+.path .path-method{
+  list-style: none;
+  padding:0 10px;
+  border-bottom: 1px solid #eee;
+}
+.path .path-method .path-description{
+  height: 40px;
+  line-height: 40px;
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #aaa;
+}
+.path .path-method-tag{
+  border-radius: 4px;
+  margin: 0 10px;
+  padding: 4px 10px;
+}
+.path .method-get{
+  background: rgba(97,175,254,.1);
+}
+.path .method-post{
+  background: rgba(73,204,144,.1);
+}
+.path .method-patch{
+  background: rgba(80,227,194,.1);
+}
+.path .method-put{
+  background: rgba(252,161,48,.1);
+}
+.path .method-delete{
+  background: rgba(249,62,62,.1);
+}
+.path .request-parameters{
+  border-bottom: 1px solid #58B7FF;
+  padding-left: 20px;
+
+}
+.path .parameters-item{
+  /*border: 1px solid #58B7FF;*/
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+.path .parameters-item-name{
+  border: 1px solid #58B7FF;
+  border-radius: 4px;
+  padding: 4px 10px;
+  margin-bottom: 5px;
+  display:inline-block;
+
+}
+.path .request-body{
+  padding-left: 20px;
+}
+.path .request{
+  padding-left: 20px;
+}
+.path .response{
+  padding-left: 20px;
+}
+.path .response-item{
+  padding:  10px 20px;
+}
+
+.path .response-item,
+.path .path-description,
+.path .path-title{
+  position: relative;
+}
+.path .path-title h3{
+  margin: 0;
+}
+.path .actions{
+  position: absolute;
+  right: 10px;
+  top: 0;
+}
+.path .actions:after{
+  display:block;
+  content:' ';
+  clear:both;
+}

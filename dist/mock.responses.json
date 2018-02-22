@@ -260,6 +260,65 @@
       }
     }
   },
+  "/projects/{projectId}/hooks": {
+    "get": {
+      "200": {
+        "description": "fetch hooks",
+        "mock": {
+          "total": "@integer(10,100)",
+          "items|1-10": [
+            {
+              "id": "@integer(0,100000)",
+              "name": "@string",
+              "type": "@string",
+              "creator": "@integer(0,100000)",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          ]
+        }
+      }
+    },
+    "post": {
+      "201": {
+        "description": "create hook",
+        "mock": {
+          "_res": {
+            "status": 201,
+            "data": {
+              "id": "@integer(0,100000)",
+              "name": "@string",
+              "type": "@string",
+              "creator": "@integer(0,100000)",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          }
+        }
+      }
+    }
+  },
+  "/projects/{projectId}/branches": {
+    "get": {
+      "200": {
+        "description": "fetch branches",
+        "mock": {
+          "total": "@integer(10,100)",
+          "items|1-10": [
+            {
+              "id": "@integer(0,100000)",
+              "name": "@string",
+              "project": "@integer",
+              "protected": "@boolean",
+              "lastCommit": "@commitid",
+              "createAt": "@datetime",
+              "updateAt": "@datetime"
+            }
+          ]
+        }
+      }
+    }
+  },
   "/plans/{planId}": {
     "get": {
       "200": {

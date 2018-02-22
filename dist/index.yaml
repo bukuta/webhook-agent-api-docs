@@ -6,8 +6,9 @@ info:
     Webhook-agent项目接口描述 <br /><a href='https://github.com/bukuta/webhook-agent'
     target="_blank">mock-server</a>
 servers:
-  - description: SwaggerHub API Auto Mocking
-    url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'
+  - description: local mock
+    name: local_mock
+    url: /api/v1
 x-server:
   - description: 后端
     url: 'http://mock.bbfe.group/project/5a27b0d11c6fcc1a712bfce9'
@@ -118,12 +119,15 @@ paths:
               properties:
                 name:
                   type: string
+                  description: 名字
                   x-mock: '@word'
                 cname:
                   type: string
+                  description: 中文名
                   x-mock: '@cname'
                 password:
                   type: string
+                  description: 密码
                   x-mock: ''
                 status:
                   type: integer
@@ -183,12 +187,15 @@ paths:
               properties:
                 name:
                   type: string
+                  description: 名字
                   x-mock: '@word'
                 cname:
                   type: string
+                  description: 中文名
                   x-mock: '@cname'
                 password:
                   type: string
+                  description: 密码
                   x-mock: ''
                 status:
                   type: integer
@@ -349,6 +356,92 @@ paths:
           description: No Content
         '404':
           description: Not Found
+  '/projects/{projectId}/hooks':
+    get:
+      tags:
+        - Projects
+      description: fetch hooks
+      parameters:
+        - name: projectId
+          in: path
+          description: ID of Project
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    $ref: '#/components/schemas/TOTAL'
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Hook'
+    post:
+      tags:
+        - Projects
+      description: create hook
+      parameters:
+        - name: projectId
+          in: path
+          description: ID of Project
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: Object
+                $ref: '#/components/schemas/Hook'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  x-mock: '@string'
+                type:
+                  type: string
+                  x-mock: '@string'
+  '/projects/{projectId}/branches':
+    get:
+      tags:
+        - Projects
+      description: fetch branches
+      parameters:
+        - name: projectId
+          in: path
+          description: ID of Project
+          required: true
+          schema:
+            type: integer
+            format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    $ref: '#/components/schemas/TOTAL'
+                  items:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Branch'
   '/plans/{planId}':
     get:
       tags:
@@ -526,15 +619,19 @@ components:
       description: 管理员
       properties:
         id:
+          description: ID
           $ref: '#/components/schemas/ID'
         name:
           type: string
+          description: 名字
           x-mock: '@word'
         cname:
           type: string
+          description: 中文名
           x-mock: '@cname'
         password:
           type: string
+          description: 密码
           x-mock: ''
         status:
           type: integer
