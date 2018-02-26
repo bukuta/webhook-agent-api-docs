@@ -7,7 +7,7 @@
     "watch": "nodemon ./scripts/build.js",
     "build": "node ./scripts/build.js",
     "sync": "node ./scripts/sync.js",
-    "mock": "node ./scripts/mock.js",
+    "server": "node ./scripts/server/index.js",
     "preview": "node ./scripts/preview.js"
   },
   "author": "",

@@ -30,6 +30,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     responses:
       '@#/components/responses/200':
         '@item': '#/components/schemas/Project'
@@ -47,6 +48,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     '@#/components/requestBodies/omitId':
       '@item': '#/components/schemas/Project'
     responses:
@@ -66,6 +68,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     responses:
       '@#/components/responses/204': true
       '@#/components/responses/404': true
@@ -83,6 +86,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     responses:
       '@#/components/responses/200.array':
         '@item': '#/components/schemas/Hook'
@@ -99,6 +103,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     '@#/components/requestBodies/omitId':
       '@item': '#/components/schemas/Hook'
     responses:
@@ -118,6 +123,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     responses:
       '@#/components/responses/200.array':
         '@item': '#/components/schemas/Branch'

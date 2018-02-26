@@ -37,7 +37,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -78,7 +79,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -222,7 +224,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -253,7 +256,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -321,7 +325,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -446,7 +451,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -480,7 +486,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -533,7 +540,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -561,7 +569,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -602,7 +611,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -654,7 +664,8 @@
             "required": true,
             "schema": {
               "type": "integer",
-              "format": "int32"
+              "format": "int32",
+              "x-mock": "@integer(0,1000)"
             }
           }
         ],
@@ -1000,7 +1011,7 @@
           },
           "name": {
             "type": "string",
-            "x-mock": "@string"
+            "x-mock": "@word"
           },
           "project": {
             "type": "integer",
@@ -1331,6 +1342,7 @@
     "requestBodies": {},
     "responses": {}
   },
+  "x-generations": null,
   "tags": [
     {
       "name": "Admins",

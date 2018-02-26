@@ -307,7 +307,7 @@
           "items|1-10": [
             {
               "id": "@integer(0,100000)",
-              "name": "@string",
+              "name": "@word",
               "project": "@integer",
               "protected": "@boolean",
               "lastCommit": "@commitid",

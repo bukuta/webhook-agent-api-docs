@@ -11,6 +11,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     responses:
       '@#/components/responses/200.array':
         '@item': '#/components/schemas/Action'
@@ -27,6 +28,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     '@#/components/requestBodies/omitId':
       '@item': '#/components/schemas/Action'
     responses:

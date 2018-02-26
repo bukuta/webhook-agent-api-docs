@@ -30,6 +30,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     responses:
       '@#/components/responses/200':
         '@item': '#/components/schemas/Admin'
@@ -46,6 +47,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     '@#/components/requestBodies/omitId':
       '@item': '#/components/schemas/Admin'
     responses:
@@ -64,6 +66,7 @@
         schema:
           type: integer
           format: int32
+          x-mock: '@integer(0,1000)'
     responses:
       '@#/components/responses/204': true
 

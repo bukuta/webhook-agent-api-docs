@@ -6,7 +6,7 @@ Branch:
       $ref: '#/components/schemas/ID'
     name:
       type: string
-      x-mock: '@string'
+      x-mock: '@word'
     project:
       type: integer
       x-mock: '@integer'
